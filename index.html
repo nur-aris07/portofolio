@@ -42,6 +42,14 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #3f3f46; 
         }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-300 antialiased selection:bg-cyan-500/30 selection:text-cyan-100 min-h-screen">
@@ -101,8 +109,9 @@
                 Available for Remote & Freelance
             </div>
             
-            <h1 class="text-5xl md:text-7xl font-extrabold text-zinc-100 tracking-tight mb-4">
-                Aris Nur Khoriq
+            <h1 class="text-5xl md:text-7xl font-extrabold text-zinc-100 tracking-tight mb-4 flex items-center justify-center">
+                <span id="typewriter-text"></span>
+                <span class="text-cyan-400 cursor-blink ml-1">|</span>
             </h1>
             
             <h2 class="text-xl md:text-2xl text-cyan-400 font-medium mb-6">
@@ -424,22 +433,22 @@
                     </div>
                     <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
                         <div>
-                            <h4 class="text-zinc-200 font-medium">Python Fundamental for Data Science</h4>
+                            <h4 class="text-zinc-200 font-medium">Fundamental Data Science</h4>
                             <p class="text-sm text-zinc-500">DQLab</p>
                         </div>
                         <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
                     </div>
                     <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
                         <div>
-                            <h4 class="text-zinc-200 font-medium">Exploratory Data Analysis with Python for Beginner</h4>
-                            <p class="text-sm text-zinc-500">DQLab</p>
+                            <h4 class="text-zinc-200 font-medium">Front-End & Back-End Development</h4>
+                            <p class="text-sm text-zinc-500">Digital Talent Scholarship</p>
                         </div>
                         <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
                     </div>
                     <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
                         <div>
-                            <h4 class="text-zinc-200 font-medium">Data Manipulation with Pandas</h4>
-                            <p class="text-sm text-zinc-500">DQLab</p>
+                            <h4 class="text-zinc-200 font-medium">Assistant Web Developer</h4>
+                            <p class="text-sm text-zinc-500">Digital Talent Scholarship</p>
                         </div>
                         <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
                     </div>
@@ -663,6 +672,54 @@
 
         setLanguage(localStorage.getItem('portfolio-language') || 'id');
 
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElement = document.getElementById('typewriter-text');
+            const nameToType = "Aris Nur Khoriq";
+            
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            // Kecepatan ketik (dalam milidetik)
+            const typeSpeed = 150; 
+            const deleteSpeed = 100;
+            const pauseEnd = 2000; // Waktu jeda setelah selesai mengetik semua
+            const pauseStart = 500; // Waktu jeda sebelum mulai mengetik lagi
+            
+            function typeWriter() {
+                // Tentukan teks yang ditampilkan saat ini berdasarkan indeks
+                const currentText = nameToType.substring(0, charIndex);
+                textElement.textContent = currentText;
+                
+                let nextDelay = isDeleting ? deleteSpeed : typeSpeed;
+                
+                if (!isDeleting && charIndex < nameToType.length) {
+                    // Jika sedang mengetik dan belum selesai
+                    charIndex++;
+                } else if (isDeleting && charIndex > 0) {
+                    // Jika sedang menghapus dan belum habis
+                    charIndex--;
+                } else {
+                    // Jika sudah selesai mengetik (di ujung kanan)
+                    if (!isDeleting) {
+                        isDeleting = true;
+                        nextDelay = pauseEnd; // Jeda lama sebelum mulai menghapus
+                    } 
+                    // Jika sudah selesai menghapus (di ujung kiri)
+                    else {
+                        isDeleting = false;
+                        nextDelay = pauseStart; // Jeda sebentar sebelum mulai mengetik
+                    }
+                }
+                
+                // Jalankan fungsi secara rekursif dengan delay
+                setTimeout(typeWriter, nextDelay);
+            }
+            
+            // Mulai efek animasi
+            setTimeout(typeWriter, pauseStart);
+        });
     </script>
 </body>
 </html>
