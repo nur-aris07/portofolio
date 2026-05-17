@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aris Nur Khoriq — Backend Developer Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <!-- Custom CSS for subtle animations -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46; 
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-300 antialiased selection:bg-cyan-500/30 selection:text-cyan-100 min-h-screen">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#hero" class="text-xl font-bold text-zinc-100 flex items-center gap-2 cursor-pointer nav-link">
+                <i data-lucide="terminal" class="text-cyan-400 w-6 h-6"></i>
+                <span>Aris<span class="text-cyan-400">.</span>Backend</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="nav-link text-zinc-400 hover:text-cyan-400 transition-colors">About</a>
+                <a href="#skills" class="nav-link text-zinc-400 hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#projects" class="nav-link text-zinc-400 hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#experience" class="nav-link text-zinc-400 hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#certifications" class="nav-link text-zinc-400 hover:text-cyan-400 transition-colors">Certifications</a>
+                <a href="#contact" class="nav-link text-zinc-400 hover:text-cyan-400 transition-colors">Contact</a>
+                
+                <a href="#contact" class="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 px-4 py-2 rounded-md border border-zinc-700 transition-all hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(34,211,238,0.1)]">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>CV</span>
+                </a>
+
+                <div class="flex items-center gap-1 bg-zinc-900 border border-zinc-800 rounded-md p-1" aria-label="Language switcher">
+                    <button type="button" class="lang-btn px-3 py-1 rounded text-xs font-semibold transition-colors" data-lang="id">ID</button>
+                    <button type="button" class="lang-btn px-3 py-1 rounded text-xs font-semibold transition-colors" data-lang="en">EN</button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-zinc-400 hover:text-zinc-100 focus:outline-none">
+                <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 shadow-xl py-4 px-6 flex-col gap-4 md:hidden">
+            <a href="#about" class="nav-link text-left text-zinc-300 hover:text-cyan-400 py-2 border-b border-zinc-800/50">About</a>
+            <a href="#skills" class="nav-link text-left text-zinc-300 hover:text-cyan-400 py-2 border-b border-zinc-800/50">Skills</a>
+            <a href="#projects" class="nav-link text-left text-zinc-300 hover:text-cyan-400 py-2 border-b border-zinc-800/50">Projects</a>
+            <a href="#experience" class="nav-link text-left text-zinc-300 hover:text-cyan-400 py-2 border-b border-zinc-800/50">Experience</a>
+            <a href="#certifications" class="nav-link text-left text-zinc-300 hover:text-cyan-400 py-2 border-b border-zinc-800/50">Certifications</a>
+            <a href="#contact" class="nav-link text-left text-zinc-300 hover:text-cyan-400 py-2">Contact</a>
+            
+            <a href="#contact" class="flex justify-center items-center gap-2 bg-cyan-600/10 text-cyan-400 px-4 py-3 rounded-md border border-cyan-500/20 mt-2">
+                <i data-lucide="download" class="w-5 h-5"></i>
+                <span>Download CV</span>
+            </a>
+            <div class="flex items-center justify-center gap-2 mt-2 bg-zinc-950 border border-zinc-800 rounded-md p-1">
+                <button type="button" class="lang-btn px-4 py-2 rounded text-xs font-semibold transition-colors" data-lang="id">ID</button>
+                <button type="button" class="lang-btn px-4 py-2 rounded text-xs font-semibold transition-colors" data-lang="en">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6">
+        
+        <!-- HERO SECTION -->
+        <section id="hero" class="pt-40 pb-20 flex flex-col items-center text-center min-h-[90vh] justify-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-8 animate-fade-in">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Available for Remote & Freelance
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold text-zinc-100 tracking-tight mb-4">
+                Aris Nur Khoriq
+            </h1>
+            
+            <h2 class="text-xl md:text-2xl text-cyan-400 font-medium mb-6">
+                Backend Developer
+            </h2>
+            
+            <p class="max-w-2xl text-zinc-400 text-lg mb-10 leading-relaxed">
+                Backend Developer yang fokus membangun aplikasi Laravel, REST API, webhook, WhatsApp Gateway, chatbot flow, dashboard monitoring, cronjob, dan sistem integrasi data untuk kebutuhan production.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16">
+                <a href="#projects" class="nav-link bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3 rounded-md font-medium transition-all shadow-[0_0_20px_rgba(8,145,178,0.2)] hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] flex items-center justify-center gap-2">
+                    Lihat Proyek
+                </a>
+                <a href="#contact" class="nav-link bg-zinc-800/50 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 px-8 py-3 rounded-md font-medium transition-all flex items-center justify-center gap-2">
+                    Hubungi Saya
+                </a>
+            </div>
+
+            <!-- Mini Highlights Row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl">
+                <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:border-zinc-700 transition-colors">
+                    <div class="text-cyan-400/80"><i data-lucide="webhook" class="w-5 h-5"></i></div>
+                    <div class="text-xl font-bold text-zinc-200">91</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Layanan Terintegrasi</div>
+                </div>
+                <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:border-zinc-700 transition-colors">
+                    <div class="text-cyan-400/80"><i data-lucide="server" class="w-5 h-5"></i></div>
+                    <div class="text-xl font-bold text-zinc-200">15+</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Jenis API Aktif</div>
+                </div>
+                <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:border-zinc-700 transition-colors">
+                    <div class="text-cyan-400/80"><i data-lucide="check-circle-2" class="w-5 h-5"></i></div>
+                    <div class="text-xl font-bold text-zinc-200">Reliable</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Production Systems</div>
+                </div>
+                <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:border-zinc-700 transition-colors">
+                    <div class="text-cyan-400/80"><i data-lucide="monitor-smartphone" class="w-5 h-5"></i></div>
+                    <div class="text-xl font-bold text-zinc-200">Ready</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Remote & Freelance</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent my-10"></div>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-20 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-zinc-100 mb-10 flex items-center gap-3">
+                <span class="text-cyan-500 font-mono text-xl">01.</span> About Me
+            </h3>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-4 text-zinc-400 leading-relaxed text-lg">
+                    <p>
+                        Halo! Saya Aris Nur Khoriq, Backend Developer dari Lamongan, Jawa Timur. Saya berpengalaman membangun dan memelihara aplikasi berbasis <span class="text-cyan-400 font-medium">Laravel, CodeIgniter, REST API, webhook, WhatsApp Gateway, dan MySQL</span> untuk kebutuhan production.
+                    </p>
+                    <p>
+                        Saya terbiasa menangani integrasi API eksternal, chatbot WhatsApp, dashboard internal, scheduled processing, validasi data, logging, deployment, maintenance, serta troubleshooting sistem legacy dengan struktur data kompleks.
+                    </p>
+                    <p>
+                        Saat ini saya terbuka untuk remote part-time dan freelance project-based, terutama untuk kebutuhan backend Laravel, API integration, WhatsApp chatbot, dashboard, dan maintenance aplikasi web.
+                    </p>
+                </div>
+                
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+                    <h4 class="text-zinc-100 font-medium mb-6 border-b border-zinc-800 pb-4">Fokus Pengembangan</h4>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-2">
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> Backend Development
+                        </li>
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> API Integration
+                        </li>
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> Webhook Processing
+                        </li>
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> Dashboard Systems
+                        </li>
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> WhatsApp Automation
+                        </li>
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> Legacy Maintenance
+                        </li>
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> Database Optimization
+                        </li>
+                        <li class="flex items-center gap-3 text-zinc-300 text-sm">
+                            <i data-lucide="chevron-right" class="text-cyan-500 w-4 h-4"></i> Task Scheduling
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-20 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-zinc-100 mb-10 flex items-center gap-3">
+                <span class="text-cyan-500 font-mono text-xl">02.</span> Technical Stack
+            </h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Backend Card -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:-translate-y-1 transition-transform duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="terminal" class="text-cyan-400 w-6 h-6"></i>
+                        <h4 class="text-lg font-bold text-zinc-100">Backend</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Laravel</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">PHP</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">CodeIgniter</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Node.js</span>
+                    </div>
+                </div>
+
+                <!-- Database Card -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:-translate-y-1 transition-transform duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="database" class="text-cyan-400 w-6 h-6"></i>
+                        <h4 class="text-lg font-bold text-zinc-100">Database</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">MySQL</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Data Mapping</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Query Optimization</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Transactions</span>
+                    </div>
+                </div>
+
+                <!-- Automation Card -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:-translate-y-1 transition-transform duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="webhook" class="text-cyan-400 w-6 h-6"></i>
+                        <h4 class="text-lg font-bold text-zinc-100">Automation</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">REST API</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Webhook</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">WA Gateway</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Cronjob</span>
+                    </div>
+                </div>
+
+                <!-- Tools Card -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:-translate-y-1 transition-transform duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="wrench" class="text-cyan-400 w-6 h-6"></i>
+                        <h4 class="text-lg font-bold text-zinc-100">Tools</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Git</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">VPS Linux</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">Postman</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">cPanel</span>
+                        <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-zinc-300 text-sm rounded-md hover:border-cyan-500/30 transition-colors">GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="py-20 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-zinc-100 mb-16 flex items-center gap-3">
+                <span class="text-cyan-500 font-mono text-xl">03.</span> Selected Projects
+            </h3>
+
+            <div class="space-y-24">
+                
+                <!-- Project 1: GOWA -->
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-7/12 relative group">
+                        <div class="aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg flex items-center justify-center group-hover:border-zinc-700 transition-colors">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-zinc-900 z-0"></div>
+                            <i data-lucide="smartphone" class="w-24 h-24 text-zinc-700/50 z-10"></i>
+                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-10">
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                            </div>
+                            <span class="absolute z-10 text-zinc-500 font-mono text-sm tracking-widest uppercase">Chat Flow Visualizer</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-5/12 space-y-5">
+                        <h4 class="text-2xl font-bold text-zinc-100">GOWA — WhatsApp Chatbot Layanan Publik</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">Laravel</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">MySQL</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">REST API</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">Webhook</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed bg-zinc-900/50 p-4 rounded-lg border border-zinc-800/50">
+                            Platform chatbot WhatsApp layanan publik Diskominfo Gresik yang menghubungkan masyarakat dengan layanan digital melalui alur percakapan berbasis WhatsApp, MaxChat, webhook, dan API eksternal.
+                        </p>
+                        <ul class="space-y-2 text-sm text-zinc-300">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> 91 layanan aktif terintegrasi melalui konfigurasi API berbasis JSON</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> Integrasi MaxChat sebagai WhatsApp Gateway dan realtime webhook processing</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> Dynamic message routing, session expiration 30 menit, analytics menu, dan tracking unique user</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 2: Dashboard Pengadaan -->
+                <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+                    <div class="w-full md:w-7/12 relative group">
+                        <div class="aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg flex items-center justify-center group-hover:border-zinc-700 transition-colors">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 to-zinc-900 z-0"></div>
+                            <i data-lucide="monitor-smartphone" class="w-24 h-24 text-zinc-700/50 z-10"></i>
+                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-10">
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                            </div>
+                            <span class="absolute z-10 text-zinc-500 font-mono text-sm tracking-widest uppercase">Datatables & Charts</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-5/12 space-y-5">
+                        <h4 class="text-2xl font-bold text-zinc-100">Dashboard Internal Monitoring & Analitik Pengadaan</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">Laravel</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">MySQL</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">REST API</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">Laravel Scheduler</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed bg-zinc-900/50 p-4 rounded-lg border border-zinc-800/50">
+                            Dashboard monitoring pengadaan untuk kebutuhan internal dan konsumsi pimpinan, dengan integrasi 14 endpoint API, sinkronisasi harian, server-side DataTables, chart, filter, detail table, dan fitur export.
+                        </p>
+                        <ul class="space-y-2 text-sm text-zinc-300">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> 30K+ data pengadaan dari RUP, ePurchasing, tender, non-tender, swakelola, dan master penyedia</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> Sinkronisasi harian memakai Laravel Scheduler, artisan command, upsert, logging, dan last-success tracking</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> Dataset siap dashboard dengan flag jenis pengadaan, indikator realisasi, dan field summary</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 3: Detak Keris -->
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-7/12 relative group">
+                        <div class="aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg flex items-center justify-center group-hover:border-zinc-700 transition-colors">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-zinc-900 z-0"></div>
+                            <i data-lucide="server" class="w-24 h-24 text-zinc-700/50 z-10"></i>
+                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-10">
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                            </div>
+                            <span class="absolute z-10 text-zinc-500 font-mono text-sm tracking-widest uppercase">Monitoring Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-5/12 space-y-5">
+                        <h4 class="text-2xl font-bold text-zinc-100">Detak Keris</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">CodeIgniter 4</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">MySQL</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">Shell Script</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">SQL Cronjob</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed bg-zinc-900/50 p-4 rounded-lg border border-zinc-800/50">
+                            Aplikasi production untuk monitoring risiko stunting berbasis data kunjungan pada sasaran catin, PUS, bumil, pasca salin, dan balita, dengan data historikal besar dan struktur legacy yang kompleks.
+                        </p>
+                        <ul class="space-y-2 text-sm text-zinc-300">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> Maintenance sistem legacy, debugging proses data, dan pengolahan data terjadwal berbasis shell script serta SQL</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i> Optimasi query MySQL, penambahan index, standarisasi mapping wilayah, dan database transaction untuk mencegah partial write</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="grid md:grid-cols-2 gap-12 py-10">
+            <!-- WORK EXPERIENCE SECTION -->
+            <section id="experience" class="scroll-mt-20">
+                <h3 class="text-2xl font-bold text-zinc-100 mb-8 flex items-center gap-3">
+                    <i data-lucide="briefcase" class="text-cyan-500 w-6 h-6"></i>
+                    Experience
+                </h3>
+                
+                <div class="space-y-6 border-l border-zinc-800 ml-3 pl-6">
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1.5 w-3 h-3 bg-zinc-950 border-2 border-cyan-500 rounded-full"></div>
+                        <h4 class="text-lg font-bold text-zinc-200">Pranata Komputer Ahli Pertama</h4>
+                        <div class="text-sm text-cyan-400 font-mono mb-2">Dinas Komunikasi dan Informatika Kabupaten Gresik <span class="text-zinc-600">|</span> <span class="text-zinc-400">Apr 2025 - Sekarang</span></div>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Membangun dan memelihara aplikasi backend, integrasi sistem, chatbot WhatsApp GOWA, dashboard monitoring, cronjob, API integration, dan maintenance aplikasi production.</p>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1.5 w-3 h-3 bg-zinc-950 border-2 border-cyan-500 rounded-full"></div>
+                        <h4 class="text-lg font-bold text-zinc-200">IT Programmer</h4>
+                        <div class="text-sm text-cyan-400 font-mono mb-2">PT Midtou Aryacom Surabaya <span class="text-zinc-600">|</span> <span class="text-zinc-400">Mei 2024 - Apr 2025</span></div>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Membangun aplikasi mobile Flutter dari nol, membuat 10+ REST API endpoint, integrasi Firebase Cloud Messaging, dan support release ke Google Play Store.</p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1.5 w-3 h-3 bg-zinc-950 border-2 border-cyan-500 rounded-full"></div>
+                        <h4 class="text-lg font-bold text-zinc-200">Sarjana Teknik Informatika</h4>
+                        <div class="text-sm text-cyan-400 font-mono mb-2">Universitas Trunojoyo Madura <span class="text-zinc-600">|</span> <span class="text-zinc-400">2019 - 2023</span></div>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Latar belakang pendidikan Teknik Informatika dengan pengembangan project web, backend, database, dan sistem informasi.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CERTIFICATION SECTION -->
+            <section id="certifications" class="scroll-mt-20">
+                <h3 class="text-2xl font-bold text-zinc-100 mb-8 flex items-center gap-3">
+                    <i data-lucide="award" class="text-cyan-500 w-6 h-6"></i>
+                    Certifications
+                </h3>
+                
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
+                        <div>
+                            <h4 class="text-zinc-200 font-medium">Junior Web Developer</h4>
+                            <p class="text-sm text-zinc-500">Vocational School Graduate Academy</p>
+                        </div>
+                        <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
+                        <div>
+                            <h4 class="text-zinc-200 font-medium">Python Fundamental for Data Science</h4>
+                            <p class="text-sm text-zinc-500">DQLab</p>
+                        </div>
+                        <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
+                        <div>
+                            <h4 class="text-zinc-200 font-medium">Exploratory Data Analysis with Python for Beginner</h4>
+                            <p class="text-sm text-zinc-500">DQLab</p>
+                        </div>
+                        <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
+                        <div>
+                            <h4 class="text-zinc-200 font-medium">Data Manipulation with Pandas</h4>
+                            <p class="text-sm text-zinc-500">DQLab</p>
+                        </div>
+                        <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-zinc-700 transition-colors">
+                        <div>
+                            <h4 class="text-zinc-200 font-medium">Belajar Dasar Pemrograman JavaScript</h4>
+                            <p class="text-sm text-zinc-500">Dicoding</p>
+                        </div>
+                        <div class="text-sm font-mono text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded w-fit">Certificate</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-24 text-center scroll-mt-20 border-t border-zinc-900">
+            <p class="text-cyan-400 font-mono mb-4 text-sm tracking-widest uppercase">What's Next?</p>
+            <h2 class="text-4xl md:text-5xl font-bold text-zinc-100 mb-6">Let's Build Something Together</h2>
+            <p class="text-zinc-400 max-w-lg mx-auto mb-10 text-lg">
+                Saya terbuka untuk remote part-time dan freelance project-based, terutama untuk backend Laravel, API integration, WhatsApp chatbot, dashboard, dan maintenance aplikasi web.
+            </p>
+            
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="https://www.instagram.com/nur_aris07" target="_blank" rel="noopener" class="p-4 bg-zinc-900 border border-zinc-800 rounded-full hover:bg-zinc-800 hover:text-cyan-400 hover:border-cyan-500/50 transition-all hover:-translate-y-1">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                </a>
+                <a href="https://github.com/nur-aris07" target="_blank" rel="noopener" class="p-4 bg-zinc-900 border border-zinc-800 rounded-full hover:bg-zinc-800 hover:text-cyan-400 hover:border-cyan-500/50 transition-all hover:-translate-y-1">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                </a>
+                <a href="https://linkedin.com/in/aris-nur-khoriq" target="_blank" rel="noopener" class="p-4 bg-zinc-900 border border-zinc-800 rounded-full hover:bg-zinc-800 hover:text-cyan-400 hover:border-cyan-500/50 transition-all hover:-translate-y-1">
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                </a>
+                <a href="mailto:nur.aris07@gmail.com" class="p-4 bg-zinc-900 border border-zinc-800 rounded-full hover:bg-zinc-800 hover:text-cyan-400 hover:border-cyan-500/50 transition-all hover:-translate-y-1">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                </a>
+            </div>
+
+            <a href="mailto:nur.aris07@gmail.com" class="inline-flex items-center gap-2 bg-transparent hover:bg-zinc-900 text-zinc-300 border border-zinc-700 px-6 py-3 rounded-md transition-all">
+                Hubungi Saya <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-zinc-600 border-t border-zinc-900 text-sm">
+        <p>© <span id="current-year"></span> Aris Nur Khoriq.</p>
+    </footer>
+
+    <!-- MAIN SCRIPT -->
+    <script>
+        // Inisialisasi ikon Lucide
+        lucide.createIcons();
+
+        // Mengatur tahun dinamis di footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 1. Navbar Scroll Effect (Vanilla JS)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-zinc-950/80', 'backdrop-blur-md', 'border-b', 'border-zinc-800/50', 'py-3');
+                navbar.classList.remove('bg-transparent', 'py-5');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-5');
+                navbar.classList.remove('bg-zinc-950/80', 'backdrop-blur-md', 'border-b', 'border-zinc-800/50', 'py-3');
+            }
+        });
+
+        // 2. Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            // Harus inisialisasi ikon lagi setiap kali attribut 'data-lucide' diubah
+            lucide.createIcons(); 
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // 3. Smooth Scrolling untuk link internal dan menutup menu mobile
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                // Pastikan target adalah hash link (contoh: #about)
+                if(targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    // Tutup menu jika sedang terbuka di layar mobile
+                    if (isMenuOpen) {
+                        toggleMenu();
+                    }
+                }
+            });
+        });
+
+
+        // 4. Language Switcher (ID / EN)
+        const translations = {
+            en: {
+                "About": "About",
+                "Skills": "Skills",
+                "Projects": "Projects",
+                "Experience": "Experience",
+                "Certifications": "Certifications",
+                "Contact": "Contact",
+                "Download CV": "Download CV",
+                "Available for Remote & Freelance": "Available for Remote & Freelance",
+                "Backend Developer yang fokus membangun aplikasi Laravel, REST API, webhook, WhatsApp Gateway, chatbot flow, dashboard monitoring, cronjob, dan sistem integrasi data untuk kebutuhan production.": "Backend Developer focused on building Laravel applications, REST APIs, webhooks, WhatsApp Gateways, chatbot flows, monitoring dashboards, cronjobs, and data integration systems for production needs.",
+                "Lihat Proyek": "View Projects",
+                "Hubungi Saya": "Contact Me",
+                "Layanan Terintegrasi": "Integrated Services",
+                "Jenis API Aktif": "Active API Types",
+                "Production Systems": "Production Systems",
+                "Remote & Freelance": "Remote & Freelance",
+                "About Me": "About Me",
+                "Halo! Saya Aris Nur Khoriq, Backend Developer dari Lamongan, Jawa Timur. Saya berpengalaman membangun dan memelihara aplikasi berbasis": "Hi! I’m Aris Nur Khoriq, a Backend Developer from Lamongan, East Java. I have experience building and maintaining applications based on",
+                "untuk kebutuhan production.": "for production needs.",
+                "Saya terbiasa menangani integrasi API eksternal, chatbot WhatsApp, dashboard internal, scheduled processing, validasi data, logging, deployment, maintenance, serta troubleshooting sistem legacy dengan struktur data kompleks.": "I am used to handling external API integrations, WhatsApp chatbots, internal dashboards, scheduled processing, data validation, logging, deployment, maintenance, and troubleshooting legacy systems with complex data structures.",
+                "Saat ini saya terbuka untuk remote part-time dan freelance project-based, terutama untuk kebutuhan backend Laravel, API integration, WhatsApp chatbot, dashboard, dan maintenance aplikasi web.": "I am currently open to remote part-time and project-based freelance work, especially for Laravel backend development, API integration, WhatsApp chatbots, dashboards, and web application maintenance.",
+                "Fokus Pengembangan": "Development Focus",
+                "Technical Stack": "Technical Stack",
+                "Selected Projects": "Selected Projects",
+                "Chat Flow Visualizer": "Chat Flow Visualizer",
+                "GOWA — WhatsApp Chatbot Layanan Publik": "GOWA — Public Service WhatsApp Chatbot",
+                "Platform chatbot WhatsApp layanan publik Diskominfo Gresik yang menghubungkan masyarakat dengan layanan digital melalui alur percakapan berbasis WhatsApp, MaxChat, webhook, dan API eksternal.": "A public service WhatsApp chatbot platform for Diskominfo Gresik that connects citizens with digital services through conversation flows powered by WhatsApp, MaxChat, webhooks, and external APIs.",
+                "91 layanan aktif terintegrasi melalui konfigurasi API berbasis JSON": "91 active services integrated through JSON-based API configuration",
+                "Integrasi MaxChat sebagai WhatsApp Gateway dan realtime webhook processing": "MaxChat integration as a WhatsApp Gateway with real-time webhook processing",
+                "Dynamic message routing, session expiration 30 menit, analytics menu, dan tracking unique user": "Dynamic message routing, 30-minute session expiration, analytics menu, and unique user tracking",
+                "Dashboard Internal Monitoring & Analitik Pengadaan": "Internal Procurement Monitoring & Analytics Dashboard",
+                "Dashboard monitoring pengadaan untuk kebutuhan internal dan konsumsi pimpinan, dengan integrasi 14 endpoint API, sinkronisasi harian, server-side DataTables, chart, filter, detail table, dan fitur export.": "A procurement monitoring dashboard for internal and executive needs, integrating 14 API endpoints, daily synchronization, server-side DataTables, charts, filters, detail tables, and export features.",
+                "30K+ data pengadaan dari RUP, ePurchasing, tender, non-tender, swakelola, dan master penyedia": "30K+ procurement records from RUP, ePurchasing, tender, non-tender, self-managed procurement, and vendor master data",
+                "Sinkronisasi harian memakai Laravel Scheduler, artisan command, upsert, logging, dan last-success tracking": "Daily synchronization using Laravel Scheduler, artisan commands, upsert, logging, and last-success tracking",
+                "Dataset siap dashboard dengan flag jenis pengadaan, indikator realisasi, dan field summary": "Dashboard-ready datasets with procurement type flags, realization indicators, and summary fields",
+                "Aplikasi production untuk monitoring risiko stunting berbasis data kunjungan pada sasaran catin, PUS, bumil, pasca salin, dan balita, dengan data historikal besar dan struktur legacy yang kompleks.": "A production application for monitoring stunting risk based on visit data for prospective brides/grooms, couples of reproductive age, pregnant mothers, postpartum mothers, and toddlers, with large historical data and complex legacy structures.",
+                "Maintenance sistem legacy, debugging proses data, dan pengolahan data terjadwal berbasis shell script serta SQL": "Legacy system maintenance, data process debugging, and scheduled data processing using shell scripts and SQL",
+                "Optimasi query MySQL, penambahan index, standarisasi mapping wilayah, dan database transaction untuk mencegah partial write": "MySQL query optimization, index additions, regional mapping standardization, and database transactions to prevent partial writes",
+                "Pranata Komputer Ahli Pertama":"Information Technology Application Developer",
+                "Apr 2025 - Sekarang": "Apr 2025 - Present",
+                "Membangun dan memelihara aplikasi backend, integrasi sistem, chatbot WhatsApp GOWA, dashboard monitoring, cronjob, API integration, dan maintenance aplikasi production.": "Building and maintaining backend applications, system integrations, the GOWA WhatsApp chatbot, monitoring dashboards, cronjobs, API integrations, and production application maintenance.",
+                "Mei 2024 - Apr 2025": "May 2024 - Apr 2025",
+                "Membangun aplikasi mobile Flutter dari nol, membuat 10+ REST API endpoint, integrasi Firebase Cloud Messaging, dan support release ke Google Play Store.": "Built a Flutter mobile application from scratch, created 10+ REST API endpoints, integrated Firebase Cloud Messaging, and supported release to Google Play Store.",
+                "Sarjana Teknik Informatika": "Bachelor of Informatics Engineering",
+                "Latar belakang pendidikan Teknik Informatika dengan pengembangan project web, backend, database, dan sistem informasi.": "Educational background in Informatics Engineering with web, backend, database, and information system project development.",
+                "Belajar Dasar Pemrograman JavaScript": "JavaScript Programming Basics",
+                "Certificate": "Certificate",
+                "What's Next?": "What's Next?",
+                "Let's Build Something Together": "Let's Build Something Together",
+            }
+        };
+
+        const idText = {};
+        document.querySelectorAll('body *').forEach(el => {
+            if (el.children.length === 0 && el.textContent.trim()) {
+                idText[el.textContent.trim()] = el.textContent.trim();
+            }
+        });
+
+        function replaceTextNodes(lang) {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    const parent = node.parentElement;
+                    if (!parent || ['SCRIPT', 'STYLE'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                    return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+                }
+            });
+
+            const nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+
+            nodes.forEach(node => {
+                const original = node.nodeValue.trim();
+                const leading = node.nodeValue.match(/^\s*/)[0];
+                const trailing = node.nodeValue.match(/\s*$/)[0];
+
+                if (lang === 'en' && translations.en[original]) {
+                    node.nodeValue = leading + translations.en[original] + trailing;
+                } else if (lang === 'id') {
+                    const idEntry = Object.entries(translations.en).find(([, en]) => en === original);
+                    if (idEntry) node.nodeValue = leading + idEntry[0] + trailing;
+                }
+            });
+        }
+
+        function setLanguage(lang) {
+            replaceTextNodes(lang);
+            document.documentElement.lang = lang;
+            localStorage.setItem('portfolio-language', lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const active = btn.dataset.lang === lang;
+                btn.classList.toggle('bg-cyan-500', active);
+                btn.classList.toggle('text-white', active);
+                btn.classList.toggle('text-zinc-400', !active);
+                btn.classList.toggle('hover:text-zinc-100', !active);
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+        });
+
+        setLanguage(localStorage.getItem('portfolio-language') || 'id');
+
+    </script>
+</body>
+</html>
