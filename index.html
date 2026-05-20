@@ -283,18 +283,39 @@
 
             <div class="space-y-24">
                 
-                <!-- Project 1: GOWA -->
+                <!-- Project 1: GOWA (CAROUSEL SLIDER) -->
                 <div class="flex flex-col md:flex-row gap-8 items-center">
                     <div class="w-full md:w-7/12 relative group">
-                        <div class="aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg flex items-center justify-center group-hover:border-zinc-700 transition-colors">
-                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-zinc-900 z-0"></div>
-                            <i data-lucide="smartphone" class="w-24 h-24 text-zinc-700/50 z-10"></i>
-                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-10">
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                        <!-- Ditambahkan kelas 'project-carousel' untuk inisiasi otomatis JavaScript -->
+                        <div class="project-carousel aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg group-hover:border-zinc-700 transition-colors">
+                            
+                            <!-- Static Mockup Window Bar -->
+                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-20 pointer-events-none">
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
                             </div>
-                            <span class="absolute z-10 text-zinc-500 font-mono text-sm tracking-widest uppercase">Chat Flow Visualizer</span>
+                            
+                            <!-- Gradient Overlay for Bottom -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+
+                            <!-- Carousel Track -->
+                            <div class="carousel-track flex w-full h-full transition-transform duration-500 ease-in-out relative z-0">
+                                <!-- Slide 1 -->
+                                <img src="./images/gowa/gowa-master-pesan.jpg" alt="GOWA Chatbot 1" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <!-- Slide 2 (Ubah src) -->
+                                <img src="./images/gowa/gowa-master-pesan.jpg" alt="GOWA Chatbot 2" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <!-- Slide 3 (Ubah src) -->
+                                <img src="./images/gowa/gowa-master-pesan.jpg" alt="GOWA Chatbot 3" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                            </div>
+
+                            <!-- Navigation Dots -->
+                            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+                                <button class="carousel-dot w-4 h-2 rounded-full bg-cyan-400 transition-all hover:bg-cyan-300 focus:outline-none" aria-label="Slide 1"></button>
+                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 2"></button>
+                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 3"></button>
+                            </div>
+
                         </div>
                     </div>
                     <div class="w-full md:w-5/12 space-y-5">
@@ -316,18 +337,39 @@
                     </div>
                 </div>
 
-                <!-- Project 2: Dashboard Pengadaan -->
+                <!-- Project 2: Dashboard Pengadaan (CAROUSEL SLIDER) -->
                 <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
                     <div class="w-full md:w-7/12 relative group">
-                        <div class="aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg flex items-center justify-center group-hover:border-zinc-700 transition-colors">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 to-zinc-900 z-0"></div>
-                            <i data-lucide="monitor-smartphone" class="w-24 h-24 text-zinc-700/50 z-10"></i>
-                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-10">
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                        <!-- Ditambahkan kelas 'project-carousel' untuk inisiasi otomatis JavaScript -->
+                        <div class="project-carousel aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg group-hover:border-zinc-700 transition-colors">
+                            
+                            <!-- Static Mockup Window Bar -->
+                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-20 pointer-events-none">
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
                             </div>
-                            <span class="absolute z-10 text-zinc-500 font-mono text-sm tracking-widest uppercase">Datatables & Charts</span>
+                            
+                            <!-- Gradient Overlay for Bottom -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+
+                            <!-- Carousel Track -->
+                            <div class="carousel-track flex w-full h-full transition-transform duration-500 ease-in-out relative z-0">
+                                <!-- Slide 1 -->
+                                <img src="./images/pengadaan/pengadaan-rekap.jpg" alt="Dashboard Pengadaan 1" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <!-- Slide 2 (Ubah src) -->
+                                <img src="./images/pengadaan/detail-penyedia.jpg" alt="Dashboard Pengadaan 2" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <!-- Slide 3 (Ubah src) -->
+                                <img src="./images/pengadaan/chart.jpg" alt="Dashboard Pengadaan 3" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                            </div>
+
+                            <!-- Navigation Dots -->
+                            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+                                <button class="carousel-dot w-4 h-2 rounded-full bg-cyan-400 transition-all hover:bg-cyan-300 focus:outline-none" aria-label="Slide 1"></button>
+                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 2"></button>
+                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 3"></button>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="w-full md:w-5/12 space-y-5">
@@ -349,18 +391,42 @@
                     </div>
                 </div>
 
-                <!-- Project 3: Detak Keris -->
+                <!-- Project 3: Detak Keris (CAROUSEL SLIDER) -->
                 <div class="flex flex-col md:flex-row gap-8 items-center">
                     <div class="w-full md:w-7/12 relative group">
-                        <div class="aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg flex items-center justify-center group-hover:border-zinc-700 transition-colors">
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-zinc-900 z-0"></div>
-                            <i data-lucide="server" class="w-24 h-24 text-zinc-700/50 z-10"></i>
-                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-10">
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                        <!-- Ditambahkan kelas 'project-carousel' untuk inisiasi otomatis JavaScript -->
+                        <div class="project-carousel aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg group-hover:border-zinc-700 transition-colors">
+                            
+                            <!-- Extra Background Gradient untuk Detak Keris -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-zinc-900 z-0 pointer-events-none"></div>
+
+                            <!-- Static Mockup Window Bar -->
+                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-20 pointer-events-none">
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
                             </div>
-                            <span class="absolute z-10 text-zinc-500 font-mono text-sm tracking-widest uppercase">Monitoring Dashboard</span>
+                            
+                            <!-- Gradient Overlay for Bottom -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+
+                            <!-- Carousel Track -->
+                            <div class="carousel-track flex w-full h-full transition-transform duration-500 ease-in-out relative z-0">
+                                <!-- Slide 1 -->
+                                <img src="./images/dk/detak-keris-statistik.png" alt="Detak Keris 1" class="w-full h-full object-cover shrink-0 relative z-0">
+                                <!-- Slide 2 (Ubah src) -->
+                                <img src="./images/dk/datatables.png" alt="Detak Keris 2" class="w-full h-full object-cover shrink-0 relative z-0 bg-zinc-800">
+                                <!-- Slide 3 (Ubah src) -->
+                                <img src="./images/dk/detail-kunjungan.jpg" alt="Detak Keris 3" class="w-full h-full object-cover shrink-0 relative z-0 bg-zinc-800">
+                            </div>
+
+                            <!-- Navigation Dots -->
+                            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+                                <button class="carousel-dot w-4 h-2 rounded-full bg-cyan-400 transition-all hover:bg-cyan-300 focus:outline-none" aria-label="Slide 1"></button>
+                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 2"></button>
+                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 3"></button>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="w-full md:w-5/12 space-y-5">
@@ -719,6 +785,65 @@
             
             // Mulai efek animasi
             setTimeout(typeWriter, pauseStart);
+        });
+
+        // --- Logika Carousel Universal untuk Semua Project ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ambil semua elemen yang punya kelas 'project-carousel'
+            const carousels = document.querySelectorAll('.project-carousel');
+            
+            carousels.forEach((carousel, carouselIndex) => {
+                const track = carousel.querySelector('.carousel-track');
+                const dots = carousel.querySelectorAll('.carousel-dot');
+                
+                if (track && dots.length > 0) {
+                    let currentSlide = 0;
+                    const totalSlides = dots.length;
+                    let slideInterval;
+
+                    // Fungsi mengupdate pergeseran slide
+                    function updateSlide(newIndex) {
+                        // Hapus style dari dot sebelumnya
+                        dots[currentSlide].classList.remove('bg-cyan-400', 'w-4');
+                        dots[currentSlide].classList.add('bg-zinc-600', 'w-2');
+                        
+                        // Update ke index terbaru
+                        currentSlide = newIndex;
+                        
+                        // Geser container track
+                        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                        
+                        // Tambahkan style aktif untuk dot baru
+                        dots[currentSlide].classList.remove('bg-zinc-600', 'w-2');
+                        dots[currentSlide].classList.add('bg-cyan-400', 'w-4');
+                    }
+
+                    function nextSlide() {
+                        const nextIndex = (currentSlide + 1) % totalSlides;
+                        updateSlide(nextIndex);
+                    }
+
+                    function startSlide() {
+                        slideInterval = setInterval(nextSlide, 3500); // 3.5 detik
+                    }
+
+                    // Memberikan aksi klik manual pada setiap indikator dot
+                    dots.forEach((dot, index) => {
+                        dot.addEventListener('click', () => {
+                            updateSlide(index);
+                            // Reset timer saat diclick
+                            clearInterval(slideInterval);
+                            startSlide();
+                        });
+                    });
+
+                    // SetTimeout digunakan agar waktu mulai bergesernya antar-project sedikit berbeda (staggered effect), 
+                    // misal project 1 bergeser, lalu setengah detik kemudian project 2 bergeser, dst.
+                    setTimeout(() => {
+                        startSlide();
+                    }, carouselIndex * 500); 
+                }
+            });
         });
     </script>
 </body>
