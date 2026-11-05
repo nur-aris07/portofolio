@@ -58,6 +58,263 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        
+
+        /* ===== SELECTED PROJECTS / MINIMAL GALLERY ===== */
+        /* Ganti seluruh CSS PREMIUM GALLERY lama dengan blok ini. */
+        .project-carousel {
+            aspect-ratio: auto !important;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            background: #111113;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, .18);
+            transition: border-color .2s ease;
+        }
+        
+        .project-carousel:hover,
+        .project-carousel:focus-within {
+            border-color: #52525b;
+        }
+        
+        .gallery-stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: var(--preview-aspect, 16 / 10);
+            overflow: hidden;
+            background: #151517;
+        }
+        
+        .gallery-stage .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+            will-change: transform;
+        }
+        
+        .gallery-stage .carousel-track > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            flex: 0 0 100%;
+            object-fit: contain !important;
+            object-position: center;
+            background: #151517;
+        }
+        
+        /* Fallback sederhana jika JavaScript dinonaktifkan. */
+        .project-carousel > .carousel-track {
+            display: block;
+        }
+        .project-carousel > .carousel-track > img {
+            display: none;
+        }
+        .project-carousel > .carousel-track > img:first-child {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Screenshot dapat diklik tanpa menutupi tampilan dengan tombol besar. */
+        .gallery-open {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            cursor: zoom-in;
+            border: 0;
+            padding: 0;
+            background: transparent;
+        }
+        
+        .gallery-open:focus-visible {
+            outline: 2px solid #22d3ee;
+            outline-offset: -4px;
+        }
+        
+        /* Kontrol berada di luar frame gambar. */
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding-top: 12px;
+        }
+        
+        .gallery-caption {
+            color: #a1a1aa;
+            font-size: 13px;
+            line-height: 1.4;
+            font-weight: 500;
+            min-width: 0;
+        }
+        
+        .gallery-actions {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-shrink: 0;
+        }
+        
+        .gallery-counter {
+            color: #71717a;
+            font: 500 12px ui-monospace, SFMono-Regular, Consolas, monospace;
+            white-space: nowrap;
+            margin-right: 5px;
+        }
+        
+        .gallery-control {
+            display: inline-grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: 1px solid #3f3f46;
+            border-radius: 8px;
+            color: #d4d4d8;
+            background: transparent;
+            transition: border-color .2s, background .2s, color .2s;
+        }
+        
+        .gallery-control:hover {
+            color: #67e8f9;
+            background: #18181b;
+            border-color: #52525b;
+        }
+        
+        .gallery-control:focus-visible,
+        .gallery-lightbox button:focus-visible {
+            outline: 2px solid #22d3ee;
+            outline-offset: 2px;
+        }
+        
+        .gallery-separator {
+            width: 1px;
+            height: 16px;
+            background: #3f3f46;
+            margin: 0 3px;
+        }
+        
+        /* ===== LIGHTBOX ===== */
+        .gallery-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            padding: 16px 22px;
+            background: rgba(9, 9, 11, .97);
+            color: #f4f4f5;
+        }
+        
+        .gallery-lightbox.is-open {
+            display: flex;
+        }
+        
+        .gallery-lightbox-top,
+        .gallery-lightbox-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            min-height: 42px;
+        }
+        
+        .gallery-lightbox-title {
+            font-size: 14px;
+            font-weight: 600;
+            max-width: 60vw;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        .gallery-lightbox-actions,
+        .gallery-lightbox-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .gallery-lightbox button {
+            display: inline-grid;
+            place-items: center;
+            min-width: 36px;
+            height: 36px;
+            padding: 0 10px;
+            border: 1px solid #3f3f46;
+            border-radius: 8px;
+            background: #18181b;
+            color: #f4f4f5;
+            font-size: 12px;
+        }
+        
+        .gallery-lightbox button:hover {
+            background: #27272a;
+        }
+        
+        .gallery-lightbox-body {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            padding: 18px;
+        }
+        
+        .gallery-lightbox-body img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .gallery-lightbox-body.is-zoomed {
+            display: block;
+            text-align: center;
+        }
+        
+        .gallery-lightbox-body.is-zoomed img {
+            max-width: none;
+            max-height: none;
+            width: 150%;
+            height: auto;
+            margin: 0 auto;
+        }
+        
+        .gallery-lightbox-bottom {
+            color: #a1a1aa;
+            font-size: 12px;
+        }
+        
+        .viewer-counter {
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 640px) {
+            .gallery-meta { gap: 8px; }
+            .gallery-caption { font-size: 12px; }
+            .gallery-actions { gap: 5px; }
+            .gallery-counter { font-size: 11px; margin-right: 0; }
+            .gallery-control { width: 30px; height: 30px; }
+            .gallery-lightbox { padding: 10px; }
+            .gallery-lightbox-body { padding: 12px 0; }
+            .gallery-lightbox-title { font-size: 12px; max-width: 45vw; }
+            .gallery-lightbox-bottom { gap: 6px; }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .gallery-stage .carousel-track,
+            .project-carousel,
+            .gallery-control { transition: none; }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-300 antialiased selection:bg-cyan-500/30 selection:text-cyan-100 min-h-screen">
@@ -292,33 +549,20 @@
             </h3>
 
             <!-- HIGHLIGHTED / SELECTED PROJECTS -->
-            <div class="space-y-24">
+            <div class="space-y-16 lg:space-y-20">
                 
                 <!-- Project 1: GOWA (CAROUSEL SLIDER) -->
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-7/12 relative group">
-                        <div class="project-carousel aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg group-hover:border-zinc-700 transition-colors">
-                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-20 pointer-events-none">
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent z-10 pointer-events-none"></div>
-
-                            <div class="carousel-track flex w-full h-full transition-transform duration-500 ease-in-out relative z-0">
-                                <img src="./images/gowa/wa-design.png" alt="GOWA Chatbot 1" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                                <img src="./images/gowa/analytics.jpg" alt="GOWA Chatbot 2" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                                <img src="./images/gowa/gowa-master-pesan.jpg" alt="GOWA Chatbot 3" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                            </div>
-
-                            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
-                                <button class="carousel-dot w-4 h-2 rounded-full bg-cyan-400 transition-all hover:bg-cyan-300 focus:outline-none" aria-label="Slide 1"></button>
-                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 2"></button>
-                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 3"></button>
+                <div class="flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
+                    <div class="w-full md:w-auto md:flex-[7] md:min-w-0">
+                        <div class="project-carousel">
+<div class="carousel-track">
+                                <img src="./images/gowa/wa-design.png" alt="GOWA — tampilan layanan WhatsApp" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <img src="./images/gowa/analytics.jpg" alt="GOWA — dashboard analitik chatbot" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <img src="./images/gowa/gowa-master-pesan.jpg" alt="GOWA — halaman manajemen pesan" class="w-full h-full object-cover shrink-0 bg-zinc-800">
                             </div>
                         </div>
                     </div>
-                    <div class="w-full md:w-5/12 space-y-5">
+                    <div class="w-full md:w-auto md:flex-[5] md:min-w-0 space-y-5">
                         <h4 class="text-2xl font-bold text-zinc-100">GOWA — WhatsApp Chatbot Layanan Publik</h4>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">Laravel</span>
@@ -341,31 +585,19 @@
                 <div class="flex flex-col md:flex-row-reverse gap-8 items-center" id="project-portal-transparansi">
 
                     <!-- PROJECT CAROUSEL -->
-                    <div class="w-full md:w-7/12 relative group">
-                        <div class="project-carousel aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg group-hover:border-zinc-700 transition-colors">
-                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-20 pointer-events-none">
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                            </div>
+                    <div class="w-full md:w-auto md:flex-[7] md:min-w-0">
+                        <div class="project-carousel">
+<div class="carousel-track">
+                                <img src="./images/portal-transparansi/landing.jpg" alt="Portal Transparansi — halaman utama" loading="lazy" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <img src="./images/portal-transparansi/apbd.jpg" alt="Portal Transparansi — dashboard APBD" loading="lazy" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <img src="./images/portal-transparansi/kinerja.jpg" alt="Portal Transparansi — dashboard kinerja" loading="lazy" class="w-full h-full object-cover shrink-0 bg-zinc-800">
 
-                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent z-10 pointer-events-none"></div>
-                            <div class="carousel-track flex w-full h-full transition-transform duration-500 ease-in-out relative z-0">
-                                <img src="./images/portal-transparansi/landing.jpg" alt="Temporary image Portal Transparansi - Slide 1" loading="lazy" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                                <img src="./images/portal-transparansi/apbd.jpg" alt="Temporary image Portal Transparansi - Slide 2" loading="lazy" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                                <img src="./images/portal-transparansi/kinerja.jpg" alt="Temporary image Portal Transparansi - Slide 3" loading="lazy" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-
-                            </div>
-                            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
-                                <button type="button" class="carousel-dot w-4 h-2 rounded-full bg-cyan-400 transition-all hover:bg-cyan-300 focus:outline-none" aria-label="Portal Transparansi Slide 1"></button>
-                                <button type="button" class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Portal Transparansi Slide 2"></button>
-                                <button type="button" class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Portal Transparansi Slide 3"></button>
                             </div>
                         </div>
                     </div>
 
                     <!-- PROJECT DETAILS -->
-                    <div class="w-full md:w-5/12 space-y-5">
+                    <div class="w-full md:w-auto md:flex-[5] md:min-w-0 space-y-5">
                         <!-- Project Status -->
                         <div class="flex flex-wrap items-center gap-2">
                             <span class="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1">
@@ -417,30 +649,17 @@
                 </div>
 
                 <!-- Project 2: Dashboard Pengadaan (CAROUSEL SLIDER) -->
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-7/12 relative group">
-                        <div class="project-carousel aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg group-hover:border-zinc-700 transition-colors">
-                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-20 pointer-events-none">
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent z-10 pointer-events-none"></div>
-
-                            <div class="carousel-track flex w-full h-full transition-transform duration-500 ease-in-out relative z-0">
-                                <img src="./images/pengadaan/pengadaan-rekap.jpg" alt="Dashboard Pengadaan 1" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                                <img src="./images/pengadaan/detail-penyedia.jpg" alt="Dashboard Pengadaan 2" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                                <img src="./images/pengadaan/chart.jpg" alt="Dashboard Pengadaan 3" class="w-full h-full object-cover shrink-0 bg-zinc-800">
-                            </div>
-
-                            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
-                                <button class="carousel-dot w-4 h-2 rounded-full bg-cyan-400 transition-all hover:bg-cyan-300 focus:outline-none" aria-label="Slide 1"></button>
-                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 2"></button>
-                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 3"></button>
+                <div class="flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
+                    <div class="w-full md:w-auto md:flex-[7] md:min-w-0">
+                        <div class="project-carousel">
+<div class="carousel-track">
+                                <img src="./images/pengadaan/pengadaan-rekap.jpg" alt="Monitoring Pengadaan — rekap data" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <img src="./images/pengadaan/detail-penyedia.jpg" alt="Monitoring Pengadaan — detail penyedia" class="w-full h-full object-cover shrink-0 bg-zinc-800">
+                                <img src="./images/pengadaan/chart.jpg" alt="Monitoring Pengadaan — visualisasi analitik" class="w-full h-full object-cover shrink-0 bg-zinc-800">
                             </div>
                         </div>
                     </div>
-                    <div class="w-full md:w-5/12 space-y-5">
+                    <div class="w-full md:w-auto md:flex-[5] md:min-w-0 space-y-5">
                         <h4 class="text-2xl font-bold text-zinc-100">Dashboard Internal Monitoring & Analitik Pengadaan</h4>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">Laravel</span>
@@ -461,31 +680,16 @@
 
                 <!-- Project 3: Detak Keris (CAROUSEL SLIDER) -->
                 <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
-                    <div class="w-full md:w-7/12 relative group">
-                        <div class="project-carousel aspect-video bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden relative shadow-lg group-hover:border-zinc-700 transition-colors">
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-zinc-900 z-0 pointer-events-none"></div>
-
-                            <div class="absolute top-4 left-4 right-4 h-6 border-b border-zinc-800 flex items-center gap-2 z-20 pointer-events-none">
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 shadow-sm"></div>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent z-10 pointer-events-none"></div>
-
-                            <div class="carousel-track flex w-full h-full transition-transform duration-500 ease-in-out relative z-0">
-                                <img src="./images/dk/detak-keris-statistik.png" alt="Detak Keris 1" class="w-full h-full object-cover shrink-0 relative z-0">
-                                <img src="./images/dk/datatables.png" alt="Detak Keris 2" class="w-full h-full object-cover shrink-0 relative z-0 bg-zinc-800">
-                                <img src="./images/dk/detail-kunjungan.jpg" alt="Detak Keris 3" class="w-full h-full object-cover shrink-0 relative z-0 bg-zinc-800">
-                            </div>
-
-                            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
-                                <button class="carousel-dot w-4 h-2 rounded-full bg-cyan-400 transition-all hover:bg-cyan-300 focus:outline-none" aria-label="Slide 1"></button>
-                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 2"></button>
-                                <button class="carousel-dot w-2 h-2 rounded-full bg-zinc-600 transition-all hover:bg-zinc-400 focus:outline-none" aria-label="Slide 3"></button>
+                    <div class="w-full md:w-auto md:flex-[7] md:min-w-0">
+                        <div class="project-carousel">
+<div class="carousel-track">
+                                <img src="./images/dk/detak-keris-statistik.png" alt="Detak Keris — statistik monitoring" class="w-full h-full object-cover shrink-0 relative z-0">
+                                <img src="./images/dk/datatables.png" alt="Detak Keris — tabel monitoring" class="w-full h-full object-cover shrink-0 relative z-0 bg-zinc-800">
+                                <img src="./images/dk/detail-kunjungan.jpg" alt="Detak Keris — detail kunjungan" class="w-full h-full object-cover shrink-0 relative z-0 bg-zinc-800">
                             </div>
                         </div>
                     </div>
-                    <div class="w-full md:w-5/12 space-y-5">
+                    <div class="w-full md:w-auto md:flex-[5] md:min-w-0 space-y-5">
                         <h4 class="text-2xl font-bold text-zinc-100">Detak Keris</h4>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">CodeIgniter 4</span>
@@ -970,62 +1174,255 @@
             setTimeout(typeWriter, pauseStart);
         });
 
-        // --- Logika Carousel Universal untuk Semua Project ---
+        // ===== SELECTED PROJECTS / MINIMAL GALLERY =====
+        // Ganti event listener carousel lama dengan blok ini.
         document.addEventListener('DOMContentLoaded', () => {
-            // Ambil semua elemen yang punya kelas 'project-carousel'
-            const carousels = document.querySelectorAll('.project-carousel');
-            
-            carousels.forEach((carousel, carouselIndex) => {
+            const configs = [
+                {
+                    cover: 'wa-design.png', aspect: '16 / 9',
+                    captions: {
+                        'wa-design.png': { id: 'GOWA — layanan WhatsApp', en: 'GOWA — WhatsApp services' },
+                        'analytics.jpg': { id: 'Analitik penggunaan chatbot', en: 'Chatbot usage analytics' },
+                        'gowa-master-pesan.jpg': { id: 'Manajemen pesan chatbot', en: 'Chatbot message management' }
+                    }
+                },
+                {
+                    cover: 'landing.jpg', aspect: '16 / 10',
+                    captions: {
+                        'landing.jpg': { id: 'Halaman utama portal', en: 'Portal homepage' },
+                        'apbd.jpg': { id: 'Transparansi anggaran', en: 'Budget transparency' },
+                        'kinerja.jpg': { id: 'Indikator kinerja', en: 'Performance indicators' }
+                    }
+                },
+                {
+                    cover: 'chart.jpg', aspect: '16 / 10',
+                    captions: {
+                        'pengadaan-rekap.jpg': { id: 'Rekap data pengadaan', en: 'Procurement data overview' },
+                        'detail-penyedia.jpg': { id: 'Detail penyedia', en: 'Vendor details' },
+                        'chart.jpg': { id: 'Analitik pengadaan', en: 'Procurement analytics' }
+                    }
+                },
+                {
+                    cover: 'detak-keris-statistik.png', aspect: '21 / 10',
+                    captions: {
+                        'detak-keris-statistik.png': { id: 'Statistik Detak Keris', en: 'Detak Keris statistics' },
+                        'datatables.png': { id: 'Data monitoring', en: 'Monitoring data' },
+                        'detail-kunjungan.jpg': { id: 'Detail kunjungan', en: 'Visit details' }
+                    }
+                }
+            ];
+        
+            const locale = () => document.documentElement.lang === 'en' ? 'en' : 'id';
+            const galleries = [];
+            let activeGallery = null;
+            let focusBeforeOpen = null;
+            let overflowBeforeOpen = '';
+        
+            const viewer = document.createElement('div');
+            viewer.className = 'gallery-lightbox';
+            viewer.setAttribute('role', 'dialog');
+            viewer.setAttribute('aria-modal', 'true');
+            viewer.setAttribute('aria-hidden', 'true');
+            viewer.setAttribute('aria-label', 'Pratinjau screenshot proyek');
+            viewer.innerHTML = `
+                <div class="gallery-lightbox-top">
+                    <strong class="gallery-lightbox-title"></strong>
+                    <div class="gallery-lightbox-actions">
+                        <button type="button" class="viewer-zoom" aria-pressed="false">Zoom 150%</button>
+                        <button type="button" class="viewer-close" aria-label="Tutup pratinjau">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="gallery-lightbox-body"><img alt=""></div>
+                <div class="gallery-lightbox-bottom">
+                    <span class="viewer-caption"></span>
+                    <div class="gallery-lightbox-nav">
+                        <button type="button" class="viewer-prev" aria-label="Gambar sebelumnya">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <span class="viewer-counter" aria-live="polite"></span>
+                        <button type="button" class="viewer-next" aria-label="Gambar berikutnya">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>`;
+            document.body.appendChild(viewer);
+        
+            const viewerBody = viewer.querySelector('.gallery-lightbox-body');
+            const viewerImage = viewerBody.querySelector('img');
+            const zoomButton = viewer.querySelector('.viewer-zoom');
+            const closeButton = viewer.querySelector('.viewer-close');
+        
+            function setZoom(enabled) {
+                viewerBody.classList.toggle('is-zoomed', enabled);
+                zoomButton.setAttribute('aria-pressed', String(enabled));
+                zoomButton.textContent = enabled ? 'Zoom 100%' : 'Zoom 150%';
+                viewerBody.scrollTop = 0;
+                viewerBody.scrollLeft = 0;
+            }
+        
+            function syncViewer() {
+                if (!activeGallery) return;
+                const g = activeGallery;
+                const img = g.images[g.index];
+                viewerImage.src = img.getAttribute('src');
+                viewerImage.alt = img.alt;
+                viewer.querySelector('.gallery-lightbox-title').textContent = g.title.textContent.trim();
+                viewer.querySelector('.viewer-caption').textContent = g.caption(g.index);
+                viewer.querySelector('.viewer-counter').textContent = `${g.index + 1} / ${g.images.length}`;
+            }
+        
+            function openViewer(g) {
+                focusBeforeOpen = document.activeElement;
+                overflowBeforeOpen = document.body.style.overflow;
+                activeGallery = g;
+                document.body.style.overflow = 'hidden';
+                setZoom(false);
+                viewer.classList.add('is-open');
+                viewer.setAttribute('aria-hidden', 'false');
+                syncViewer();
+                closeButton.focus();
+            }
+        
+            function closeViewer() {
+                if (!activeGallery) return;
+                activeGallery = null;
+                viewer.classList.remove('is-open');
+                viewer.setAttribute('aria-hidden', 'true');
+                viewerImage.removeAttribute('src');
+                document.body.style.overflow = overflowBeforeOpen;
+                focusBeforeOpen?.focus?.();
+            }
+        
+            document.querySelectorAll('.project-carousel').forEach((carousel, projectIndex) => {
                 const track = carousel.querySelector('.carousel-track');
-                const dots = carousel.querySelectorAll('.carousel-dot');
-                
-                if (track && dots.length > 0) {
-                    let currentSlide = 0;
-                    const totalSlides = dots.length;
-                    let slideInterval;
-
-                    // Fungsi mengupdate pergeseran slide
-                    function updateSlide(newIndex) {
-                        // Hapus style dari dot sebelumnya
-                        dots[currentSlide].classList.remove('bg-cyan-400', 'w-4');
-                        dots[currentSlide].classList.add('bg-zinc-600', 'w-2');
-                        
-                        // Update ke index terbaru
-                        currentSlide = newIndex;
-                        
-                        // Geser container track
-                        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-                        
-                        // Tambahkan style aktif untuk dot baru
-                        dots[currentSlide].classList.remove('bg-zinc-600', 'w-2');
-                        dots[currentSlide].classList.add('bg-cyan-400', 'w-4');
+                if (!track) return;
+        
+                const config = configs[projectIndex] || { captions: {}, aspect: '16 / 10' };
+                const imageFile = img => img.getAttribute('src').split('/').pop().toLowerCase();
+                const cover = [...track.querySelectorAll('img')].find(img => imageFile(img) === config.cover);
+                if (cover) track.prepend(cover); // Chart pengadaan sebagai cover; lainnya tetap.
+                const images = [...track.querySelectorAll('img')];
+                if (!images.length) return;
+        
+                const title = carousel.parentElement.nextElementSibling.querySelector('h4');
+                carousel.className = 'project-carousel';
+                carousel.replaceChildren(); // Hapus toolbar browser, gradient, dan dots lama.
+                track.className = 'carousel-track';
+        
+                const stage = document.createElement('div');
+                stage.className = 'gallery-stage';
+                stage.style.setProperty('--preview-aspect', config.aspect);
+                stage.appendChild(track);
+                stage.insertAdjacentHTML('beforeend', `
+                    <button type="button" class="gallery-open" aria-label="Perbesar screenshot proyek"></button>
+                `);
+                carousel.appendChild(stage);
+        
+                // Gunakan rasio gambar asli sebagai dasar: tidak ada crop atau bar hitam besar.
+                const first = images[0];
+                const applyNaturalRatio = () => {
+                    if (!first.naturalWidth || !first.naturalHeight) return;
+                    const aspect = first.naturalWidth / first.naturalHeight;
+                    if (aspect >= 1.45 && aspect <= 2.5) {
+                        stage.style.setProperty('--preview-aspect', String(aspect));
                     }
-
-                    function nextSlide() {
-                        const nextIndex = (currentSlide + 1) % totalSlides;
-                        updateSlide(nextIndex);
+                };
+                if (first.complete) applyNaturalRatio();
+                else first.addEventListener('load', applyNaturalRatio, { once: true });
+        
+                const meta = document.createElement('div');
+                meta.className = 'gallery-meta';
+                meta.innerHTML = `
+                    <span class="gallery-caption"></span>
+                    <div class="gallery-actions">
+                        <span class="gallery-counter" aria-live="polite"></span>
+                        <button type="button" class="gallery-control gallery-prev" aria-label="Gambar sebelumnya">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button type="button" class="gallery-control gallery-next" aria-label="Gambar berikutnya">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                        <span class="gallery-separator" aria-hidden="true"></span>
+                        <button type="button" class="gallery-control gallery-expand" aria-label="Perbesar gambar">
+                            <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>`;
+                carousel.after(meta);
+        
+                const g = {
+                    index: 0,
+                    images,
+                    title,
+                    caption(i) {
+                        return config.captions[imageFile(images[i])]?.[locale()] || images[i].alt;
+                    },
+                    render() {
+                        track.style.transform = `translateX(-${this.index * 100}%)`;
+                        meta.querySelector('.gallery-caption').textContent = this.caption(this.index);
+                        meta.querySelector('.gallery-counter').textContent =
+                            `${String(this.index + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
+                        if (activeGallery === this) syncViewer();
+                    },
+                    go(index) {
+                        this.index = (index + images.length) % images.length;
+                        if (activeGallery === this) setZoom(false);
+                        this.render();
                     }
-
-                    function startSlide() {
-                        slideInterval = setInterval(nextSlide, 3500); // 3.5 detik
+                };
+                galleries.push(g);
+        
+                meta.querySelector('.gallery-prev').addEventListener('click', () => g.go(g.index - 1));
+                meta.querySelector('.gallery-next').addEventListener('click', () => g.go(g.index + 1));
+                meta.querySelector('.gallery-expand').addEventListener('click', () => openViewer(g));
+        
+                // Hindari click sintetis membuka lightbox tepat setelah swipe.
+                let lastSwipeAt = 0;
+                stage.querySelector('.gallery-open').addEventListener('click', () => {
+                    if (Date.now() - lastSwipeAt < 450) return;
+                    openViewer(g);
+                });
+        
+                // Swipe pada area gambar tanpa mengganti halaman saat sekadar tap.
+                let touchX = 0;
+                stage.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, { passive: true });
+                stage.addEventListener('touchend', e => {
+                    const delta = e.changedTouches[0].screenX - touchX;
+                    if (Math.abs(delta) > 55) {
+                        lastSwipeAt = Date.now();
+                        g.go(g.index + (delta < 0 ? 1 : -1));
                     }
-
-                    // Memberikan aksi klik manual pada setiap indikator dot
-                    dots.forEach((dot, index) => {
-                        dot.addEventListener('click', () => {
-                            updateSlide(index);
-                            // Reset timer saat diclick
-                            clearInterval(slideInterval);
-                            startSlide();
-                        });
-                    });
-
-                    // SetTimeout digunakan agar waktu mulai bergesernya antar-project sedikit berbeda (staggered effect)
-                    setTimeout(() => {
-                        startSlide();
-                    }, carouselIndex * 500); 
+                }, { passive: true });
+        
+                g.render();
+            });
+        
+            viewer.querySelector('.viewer-prev').addEventListener('click', () => activeGallery?.go(activeGallery.index - 1));
+            viewer.querySelector('.viewer-next').addEventListener('click', () => activeGallery?.go(activeGallery.index + 1));
+            zoomButton.addEventListener('click', () => setZoom(!viewerBody.classList.contains('is-zoomed')));
+            closeButton.addEventListener('click', closeViewer);
+            viewerBody.addEventListener('click', e => { if (e.target === viewerBody) closeViewer(); });
+        
+            document.addEventListener('keydown', e => {
+                if (!activeGallery) return;
+                if (e.key === 'Escape') { e.preventDefault(); closeViewer(); }
+                if (e.key === 'ArrowLeft') { e.preventDefault(); activeGallery?.go(activeGallery.index - 1); }
+                if (e.key === 'ArrowRight') { e.preventDefault(); activeGallery?.go(activeGallery.index + 1); }
+                if (e.key === 'Tab') {
+                    const controls = [...viewer.querySelectorAll('button')];
+                    const first = controls[0], last = controls[controls.length - 1];
+                    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
                 }
             });
+        
+            // Language switcher milik halaman tetap dipakai.
+            document.querySelectorAll('.lang-btn').forEach(button => {
+                button.addEventListener('click', () => galleries.forEach(g => g.render()));
+            });
+        
+            if (window.lucide) lucide.createIcons();
         });
     </script>
 </body>
