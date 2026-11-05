@@ -81,9 +81,11 @@
         .gallery-stage {
             position: relative;
             width: 100%;
+            /* Rasio mengikuti screenshot yang sedang aktif. */
             aspect-ratio: var(--preview-aspect, 16 / 10);
             overflow: hidden;
             background: #151517;
+            transition: aspect-ratio .32s cubic-bezier(.22, 1, .36, 1);
         }
         
         .gallery-stage .carousel-track {
@@ -311,6 +313,7 @@
         }
         
         @media (prefers-reduced-motion: reduce) {
+            .gallery-stage,
             .gallery-stage .carousel-track,
             .project-carousel,
             .gallery-control { transition: none; }
@@ -1320,17 +1323,8 @@
                 `);
                 carousel.appendChild(stage);
         
-                // Gunakan rasio gambar asli sebagai dasar: tidak ada crop atau bar hitam besar.
-                const first = images[0];
-                const applyNaturalRatio = () => {
-                    if (!first.naturalWidth || !first.naturalHeight) return;
-                    const aspect = first.naturalWidth / first.naturalHeight;
-                    if (aspect >= 1.45 && aspect <= 2.5) {
-                        stage.style.setProperty('--preview-aspect', String(aspect));
-                    }
-                };
-                if (first.complete) applyNaturalRatio();
-                else first.addEventListener('load', applyNaturalRatio, { once: true });
+                // Rasio awal hanya fallback sampai gambar aktif selesai dimuat.
+                // Rasio berikutnya dihitung di render() untuk SETIAP slide.
         
                 const meta = document.createElement('div');
                 meta.className = 'gallery-meta';
@@ -1355,11 +1349,34 @@
                     index: 0,
                     images,
                     title,
+                    ratioRequest: 0,
                     caption(i) {
                         return config.captions[imageFile(images[i])]?.[locale()] || images[i].alt;
                     },
+                    updateAspectRatio() {
+                        // Simpan versi request agar event load slide lama tidak
+                        // menimpa rasio apabila pengguna pindah slide dengan cepat.
+                        const index = this.index;
+                        const request = ++this.ratioRequest;
+                        const image = images[index];
+
+                        const apply = () => {
+                            if (this.index !== index || this.ratioRequest !== request) return;
+                            if (!image.naturalWidth || !image.naturalHeight) return;
+                            stage.style.setProperty(
+                                '--preview-aspect',
+                                String(image.naturalWidth / image.naturalHeight)
+                            );
+                        };
+
+                        // Gambar yang dipilih harus dimuat, meski sebelumnya lazy.
+                        image.loading = 'eager';
+                        if (image.complete) apply();
+                        else image.addEventListener('load', apply, { once: true });
+                    },
                     render() {
                         track.style.transform = `translateX(-${this.index * 100}%)`;
+                        this.updateAspectRatio();
                         meta.querySelector('.gallery-caption').textContent = this.caption(this.index);
                         meta.querySelector('.gallery-counter').textContent =
                             `${String(this.index + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
