@@ -329,6 +329,45 @@
             .project-carousel,
             .gallery-control { transition: none; }
         }
+
+        .other-project-viewport {
+            width: 100%;
+            overflow: hidden;
+            touch-action: pan-y;
+            padding: 6px 0;
+        }
+
+        .other-project-track {
+            display: flex;
+            align-items: stretch;
+            gap: 24px;
+
+            transition: transform 450ms cubic-bezier(.22, 1, .36, 1);
+            will-change: transform;
+        }
+
+        .other-project-track > div {
+            flex: 0 0 100%;
+            min-width: 0;
+        }
+
+        @media (min-width: 768px) {
+            .other-project-track > div {
+                flex-basis: calc((100% - 24px) / 2);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .other-project-track > div {
+                flex-basis: calc((100% - 48px) / 3);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .other-project-track {
+                transition: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-300 antialiased selection:bg-cyan-500/30 selection:text-cyan-100 min-h-screen">
@@ -724,145 +763,150 @@
             </div> <!-- END SELECTED PROJECTS -->
 
             <!-- OTHER PROJECTS -->
-            <div class="mt-32">
-                <div class="mb-10">
-                    <h4 class="text-2xl font-bold text-zinc-100 mb-3 flex items-center gap-2">
+            <div class="mt-32" id="other-projects-carousel">
+                <div class="mb-3 md:mb-10 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+                    <h4 class="order-1 text-2xl font-bold text-zinc-100 flex items-center gap-2">
                         <i data-lucide="folder-git-2" class="text-cyan-500 w-6 h-6"></i>
                         Other Projects
                     </h4>
-                    <p class="text-zinc-400 text-base max-w-3xl">
+                    <p class="order-2 md:order-3 w-full">
                         Project tambahan yang pernah saya kerjakan, mencakup aplikasi web, dashboard, API, automation, dan sistem internal.
                     </p>
+                    <div class="order-3 md:order-2 w-full md:w-auto flex items-center justify-end gap-2">
+                        <span id="other-project-counter" class="font-mono text-xs text-zinc-500 mr-2" aria-live="off">01 / 04</span>
+                        <button id="other-project-prev" type="button" aria-label="Proyek sebelumnya / Previous project" aria-controls="other-project-viewport" class="w-9 h-9 grid place-items-center rounded-lg border border-zinc-700 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/60 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                        <button id="other-project-next" type="button" aria-label="Proyek berikutnya / Next project" aria-controls="other-project-viewport" class="w-9 h-9 grid place-items-center rounded-lg border border-zinc-700 text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/60 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- Other Project 1: Company Profile & Catalog Website -->
-                    <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
-                        <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
-                            <!-- Ganti src ini dengan gambar riil berformat webp -->
-                            <img src="./images/putraronas/putra-ronas.jpg" alt="Screenshot Company Profile & Catalog Website" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="flex flex-col flex-1 p-5">
-                            <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">Company Profile & Catalog Website</h5>
-                            <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
-                                Membangun website company profile dan katalog layanan responsive dengan admin panel Laravel kustom untuk manajemen konten dinamis.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Laravel 12</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">MySQL</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Tailwind CSS</span>
+                <div id="other-project-viewport" class="other-project-viewport" role="region" aria-roledescription="carousel" aria-label="Other Projects">
+                    <div id="other-project-track" class="other-project-track">
+                        <!-- Other Project 1: Company Profile & Catalog Website -->
+                        <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
+                            <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
+                                <!-- Ganti src ini dengan gambar riil berformat webp -->
+                                <img src="./images/putraronas/putra-ronas.jpg" alt="Screenshot Company Profile & Catalog Website" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <div class="space-y-1.5 text-xs text-zinc-500 mb-4 pt-4 border-t border-zinc-800/50">
-                                <div class="flex justify-between"><span class="text-zinc-600">Role:</span> <span class="text-zinc-300">Fullstack Developer</span></div>
-                                <div class="flex justify-between"><span class="text-zinc-600">Year:</span> <span class="text-zinc-300">2026</span></div>
-                                <div class="flex justify-between"><span class="text-zinc-600">Type:</span> <span class="text-zinc-300">Freelance Client Project</span></div>
-                            </div>                            
-                            <div class="flex gap-3 mt-auto pt-2">
-                                <a href="https://putraronas.com/" class="text-zinc-400 hover:text-cyan-400 transition-colors" title="Live Demo"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Other Project 2: Website Perusahaan dengan AI Web Chatbot -->
-                    <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
-                        <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
-                             <!-- Ganti src ini dengan gambar riil berformat webp -->
-                            <img src="./images/nexora/nexora.jpg" alt="Screenshot AI Web Chatbot" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="flex flex-col flex-1 p-5">
-                            <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">AI Web Chatbot Integration</h5>
-                            <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
-                                Membangun landing page perusahaan dengan floating AI chatbot widget yang diintegrasikan dengan Gemini API melalui backend Node.js.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">HTML/CSS</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Node.js</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Gemini API</span>
-                            </div>
-                            <div class="space-y-1.5 text-xs text-zinc-500 pt-4 border-t border-zinc-800/50 mt-auto">
-                                <div class="flex justify-between"><span class="text-zinc-600">Role:</span> <span class="text-zinc-300">Fullstack Developer</span></div>
-                                <div class="flex justify-between"><span class="text-zinc-600">Year:</span> <span class="text-zinc-300">2026</span></div>
-                                <div class="flex justify-between"><span class="text-zinc-600">Type:</span> <span class="text-zinc-300">Personal Project</span></div>
-                            </div>
-                            <div class="flex gap-3 mt-auto pt-2">
-                                <a href="https://github.com/nur-aris07/nexora_chatbot" class="text-zinc-400 hover:text-cyan-400 transition-colors" title="Repository"><i data-lucide="github" class="w-4 h-4"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Other Project 3: Prototype Sistem CBT -->
-                    <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
-                        <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
-                             <!-- Ganti src ini dengan gambar riil berformat webp -->
-                            <img src="./images/cbt/cbt.jpeg" alt="Screenshot Prototype Sistem CBT" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="flex flex-col flex-1 p-5">
-                            <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">Prototype Sistem CBT</h5>
-                            <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
-                                Prototype aplikasi Computer-Based Test dengan fitur auto-scoring, manajemen soal, timer ujian, dan laporan hasil berbasis web.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">CodeIgniter 4</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">MySQL</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Bootstrap</span>
-                            </div>
-                            <div class="space-y-1.5 text-xs text-zinc-500 mb-4 pt-4 border-t border-zinc-800/50 mt-auto">
-                                <div class="flex justify-between"><span class="text-zinc-600">Role:</span> <span class="text-zinc-300">Fullstack Developer</span></div>
-                                <div class="flex justify-between"><span class="text-zinc-600">Year:</span> <span class="text-zinc-300">2023</span></div>
-                                <div class="flex justify-between"><span class="text-zinc-600">Type:</span> <span class="text-zinc-300">Personal Project</span></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Other Project 4: Siapegawai — Personal Project -->
-                    <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
-                        <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
-                            <img
-                                src="./images/siapegawai/home.png"
-                                alt="Siapegawai — tampilan beranda platform belajar CPNS"
-                                data-alt-id="Siapegawai — tampilan beranda platform belajar CPNS"
-                                data-alt-en="Siapegawai — CPNS learning platform homepage"
-                                loading="lazy"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            >
-                        </div>
-                        <div class="flex flex-col flex-1 p-5">
-                            <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">
-                                Siapegawai — Platform Belajar CPNS
-                            </h5>
-                            <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
-                                Prototipe platform belajar CPNS dengan latihan SKD 9 soal bertimer, bank 12 contoh soal beserta pembahasan, serta riwayat hasil yang tersimpan secara lokal di browser.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">HTML5</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">CSS3</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">JavaScript</span>
-                                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">localStorage</span>
-                            </div>
-                            <div class="space-y-1.5 text-xs text-zinc-500 mb-4 pt-4 border-t border-zinc-800/50 mt-auto">
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-600">Role:</span>
-                                    <span class="text-zinc-300">Fullstack Developer</span>
+                            <div class="flex flex-col flex-1 p-5">
+                                <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">Company Profile & Catalog Website</h5>
+                                <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
+                                    Membangun website company profile dan katalog layanan responsive dengan admin panel Laravel kustom untuk manajemen konten dinamis.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Laravel 12</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">MySQL</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Tailwind CSS</span>
                                 </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-600">Year:</span>
-                                    <span class="text-zinc-300">2026</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-zinc-600">Type:</span>
-                                    <span class="text-zinc-300">Personal Project</span>
+                                <div class="space-y-1.5 text-xs text-zinc-500 mb-4 pt-4 border-t border-zinc-800/50">
+                                    <div class="flex justify-between"><span class="text-zinc-600">Role:</span> <span class="text-zinc-300">Fullstack Developer</span></div>
+                                    <div class="flex justify-between"><span class="text-zinc-600">Year:</span> <span class="text-zinc-300">2026</span></div>
+                                    <div class="flex justify-between"><span class="text-zinc-600">Type:</span> <span class="text-zinc-300">Freelance Client Project</span></div>
+                                </div>                            
+                                <div class="flex gap-3 mt-auto pt-2">
+                                    <a href="https://putraronas.com/" class="text-zinc-400 hover:text-cyan-400 transition-colors" title="Live Demo"><i data-lucide="external-link" class="w-4 h-4"></i></a>
                                 </div>
                             </div>
-                            <div class="flex gap-3 mt-auto pt-2">
-                                <a href="https://github.com/nur-aris07/siapegawai" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-cyan-400 transition-colors" title="GitHub — Siapegawai" aria-label="GitHub — Siapegawai">
-                                    <i data-lucide="github" class="w-4 h-4"></i>
-                                </a>
-                            </div>
+                        </div>
 
+                        <!-- Other Project 2: Website Perusahaan dengan AI Web Chatbot -->
+                        <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
+                            <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
+                                <!-- Ganti src ini dengan gambar riil berformat webp -->
+                                <img src="./images/nexora/nexora.jpg" alt="Screenshot AI Web Chatbot" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="flex flex-col flex-1 p-5">
+                                <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">AI Web Chatbot Integration</h5>
+                                <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
+                                    Membangun landing page perusahaan dengan floating AI chatbot widget yang diintegrasikan dengan Gemini API melalui backend Node.js.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">HTML/CSS</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Node.js</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Gemini API</span>
+                                </div>
+                                <div class="space-y-1.5 text-xs text-zinc-500 pt-4 border-t border-zinc-800/50 mt-auto">
+                                    <div class="flex justify-between"><span class="text-zinc-600">Role:</span> <span class="text-zinc-300">Fullstack Developer</span></div>
+                                    <div class="flex justify-between"><span class="text-zinc-600">Year:</span> <span class="text-zinc-300">2026</span></div>
+                                    <div class="flex justify-between"><span class="text-zinc-600">Type:</span> <span class="text-zinc-300">Personal Project</span></div>
+                                </div>
+                                <div class="flex gap-3 mt-auto pt-2">
+                                    <a href="https://github.com/nur-aris07/nexora_chatbot" class="text-zinc-400 hover:text-cyan-400 transition-colors" title="Repository"><i data-lucide="github" class="w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Other Project 3: Prototype Sistem CBT -->
+                        <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
+                            <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
+                                <!-- Ganti src ini dengan gambar riil berformat webp -->
+                                <img src="./images/cbt/cbt.jpeg" alt="Screenshot Prototype Sistem CBT" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="flex flex-col flex-1 p-5">
+                                <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">Prototype Sistem CBT</h5>
+                                <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
+                                    Prototype aplikasi Computer-Based Test dengan fitur auto-scoring, manajemen soal, timer ujian, dan laporan hasil berbasis web.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">CodeIgniter 4</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">MySQL</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">Bootstrap</span>
+                                </div>
+                                <div class="space-y-1.5 text-xs text-zinc-500 mb-4 pt-4 border-t border-zinc-800/50 mt-auto">
+                                    <div class="flex justify-between"><span class="text-zinc-600">Role:</span> <span class="text-zinc-300">Fullstack Developer</span></div>
+                                    <div class="flex justify-between"><span class="text-zinc-600">Year:</span> <span class="text-zinc-300">2023</span></div>
+                                    <div class="flex justify-between"><span class="text-zinc-600">Type:</span> <span class="text-zinc-300">Personal Project</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Other Project 4: Siapegawai — Personal Project -->
+                        <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl overflow-hidden h-full flex flex-col hover:border-cyan-500/30 hover:-translate-y-1 transition-all group">
+                            <div class="aspect-video w-full overflow-hidden bg-zinc-800 border-b border-zinc-800">
+                                <img
+                                    src="./images/siapegawai/home.png"
+                                    alt="Siapegawai — tampilan beranda platform belajar CPNS"
+                                    data-alt-id="Siapegawai — tampilan beranda platform belajar CPNS"
+                                    data-alt-en="Siapegawai — CPNS learning platform homepage"
+                                    loading="lazy"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                >
+                            </div>
+                            <div class="flex flex-col flex-1 p-5">
+                                <h5 class="text-lg font-bold text-zinc-100 mb-2 group-hover:text-cyan-400 transition-colors">
+                                    Siapegawai — Platform Belajar CPNS
+                                </h5>
+                                <p class="text-zinc-400 text-sm line-clamp-3 project-desc-clamp mb-4 flex-1">
+                                    Prototipe platform belajar CPNS dengan latihan SKD 9 soal bertimer, bank 12 contoh soal beserta pembahasan, serta riwayat hasil yang tersimpan secara lokal di browser.
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">HTML5</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">CSS3</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">JavaScript</span>
+                                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/20">localStorage</span>
+                                </div>
+                                <div class="space-y-1.5 text-xs text-zinc-500 mb-4 pt-4 border-t border-zinc-800/50 mt-auto">
+                                    <div class="flex justify-between">
+                                        <span class="text-zinc-600">Role:</span>
+                                        <span class="text-zinc-300">Fullstack Developer</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-zinc-600">Year:</span>
+                                        <span class="text-zinc-300">2026</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-zinc-600">Type:</span>
+                                        <span class="text-zinc-300">Personal Project</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 mt-auto pt-2">
+                                    <a href="https://github.com/nur-aris07/siapegawai" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-cyan-400 transition-colors" title="GitHub — Siapegawai" aria-label="GitHub — Siapegawai">
+                                        <i data-lucide="github" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div> <!-- END OTHER PROJECTS -->
 
@@ -1505,6 +1549,268 @@
             });
         
             if (window.lucide) lucide.createIcons();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const section = document.getElementById('other-projects-carousel');
+            const viewport = document.getElementById('other-project-viewport');
+            const track = document.getElementById('other-project-track');
+            const prevBtn = document.getElementById('other-project-prev');
+            const nextBtn = document.getElementById('other-project-next');
+            const counter = document.getElementById('other-project-counter');
+
+            if (!section || !viewport || !track || !prevBtn || !nextBtn || !counter) {
+                return;
+            }
+
+            const total = track.children.length;
+            if (!total) return;
+
+            const AUTOPLAY_DELAY = 5000;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            const hoverDevice = window.matchMedia('(hover: hover)');
+
+            let activeIndex = 0;
+            let moving = false;
+            let moveDirection = 0;
+            let autoplayId = null;
+            let isInView = false;
+
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let lastSwipeAt = 0;
+
+            const visibleCount = () => {
+                if (window.matchMedia('(min-width: 1024px)').matches) return 3;
+                if (window.matchMedia('(min-width: 768px)').matches) return 2;
+                return 1;
+            };
+
+            const canSlide = () => total > visibleCount();
+
+            function updateUI() {
+
+                counter.textContent =
+                    `${String(activeIndex + 1).padStart(2, '0')} / ` +
+                    `${String(total).padStart(2, '0')}`;
+
+                prevBtn.disabled = nextBtn.disabled = !canSlide();
+
+                // Kartu di luar viewport tidak ikut navigasi keyboard.
+                [...track.children].forEach((card, index) => {
+                    const hidden = index >= visibleCount();
+
+                    card.inert = hidden;
+                    card.setAttribute('aria-hidden', String(hidden));
+                });
+            }
+
+            function stopAutoplay() {
+                window.clearTimeout(autoplayId);
+                autoplayId = null;
+            }
+
+            function startAutoplay() {
+
+                stopAutoplay();
+
+                const focusInside = section.contains(document.activeElement)
+                    && document.activeElement.matches(':focus-visible');
+
+                if (
+                    !canSlide() ||
+                    moving ||
+                    !isInView ||
+                    reduceMotion.matches ||
+                    document.hidden ||
+                    focusInside ||
+                    (hoverDevice.matches && section.matches(':hover'))
+                ) {
+                    return;
+                }
+
+                autoplayId = window.setTimeout(() => {
+                    move(1);
+                }, AUTOPLAY_DELAY);
+            }
+
+            function finishMove() {
+
+                if (!moving) return;
+                track.style.transition = 'none';
+
+                if (moveDirection === 1) {
+                    track.appendChild(track.firstElementChild);
+                }
+
+                track.style.transform = 'translate3d(0, 0, 0)';
+                void track.offsetWidth;
+                track.style.transition = '';
+
+                activeIndex = (
+                    activeIndex + moveDirection + total
+                ) % total;
+
+                moving = false;
+                moveDirection = 0;
+
+                updateUI();
+                startAutoplay();
+            }
+
+            function move(direction) {
+
+                if (moving || !canSlide()) return;
+
+                stopAutoplay();
+
+                if (reduceMotion.matches) {
+
+                    if (direction === 1) {
+                        track.appendChild(track.firstElementChild);
+                    } else {
+                        track.insertBefore(
+                            track.lastElementChild,
+                            track.firstElementChild
+                        );
+                    }
+
+                    activeIndex = (
+                        activeIndex + direction + total
+                    ) % total;
+
+                    updateUI();
+                    startAutoplay();
+                    return;
+                }
+
+                const firstCard = track.firstElementChild;
+
+                const gap = parseFloat(
+                    getComputedStyle(track).columnGap
+                ) || 0;
+
+                const step = firstCard.getBoundingClientRect().width + gap;
+
+                moving = true;
+                moveDirection = direction;
+
+                if (direction === 1) {
+                    track.style.transform = `translate3d(-${step}px, 0, 0)`;
+
+                } else {
+                    track.style.transition = 'none';
+                    track.insertBefore(
+                        track.lastElementChild,
+                        track.firstElementChild
+                    );
+
+                    track.style.transform = `translate3d(-${step}px, 0, 0)`;
+                    void track.offsetWidth;
+                    track.style.transition = '';
+
+                    requestAnimationFrame(() => {
+                        track.style.transform = 'translate3d(0, 0, 0)';
+                    });
+                }
+            }
+
+            track.addEventListener('transitionend', event => {
+
+                if (
+                    event.target === track &&
+                    event.propertyName === 'transform'
+                ) {
+                    finishMove();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => move(-1));
+            nextBtn.addEventListener('click', () => move(1));
+
+            viewport.addEventListener('touchstart', event => {
+
+                stopAutoplay();
+
+                touchStartX = event.changedTouches[0].clientX;
+                touchStartY = event.changedTouches[0].clientY;
+
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', event => {
+
+                const deltaX = event.changedTouches[0].clientX - touchStartX;
+                const deltaY = event.changedTouches[0].clientY - touchStartY;
+
+                if ( Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2 ) {
+
+                    lastSwipeAt = Date.now();
+                    move(deltaX < 0 ? 1 : -1);
+
+                } else {
+                    startAutoplay();
+                }
+
+            }, { passive: true });
+
+            viewport.addEventListener(
+                'touchcancel',
+                startAutoplay,
+                { passive: true }
+            );
+
+            viewport.addEventListener('click', event => {
+                if (Date.now() - lastSwipeAt < 450) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+            }, true);
+
+            section.addEventListener('mouseenter', () => {
+                if (hoverDevice.matches) stopAutoplay();
+            });
+
+            section.addEventListener('mouseleave', startAutoplay);
+            section.addEventListener('focusin', stopAutoplay);
+            section.addEventListener('focusout', () => {
+                window.setTimeout(startAutoplay, 0);
+            });
+
+            document.addEventListener(
+                'visibilitychange',
+                startAutoplay
+            );
+
+            window.addEventListener('resize', () => {
+
+                if (moving) finishMove();
+
+                updateUI();
+                startAutoplay();
+            });
+
+            updateUI();
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(entries => {
+                    isInView = entries[0].intersectionRatio >= 0.15;
+                    startAutoplay();
+
+                }, {
+                    threshold: [0, 0.15, 0.5]
+                });
+
+                observer.observe(viewport);
+
+            } else {
+
+                isInView = true;
+                startAutoplay();
+            }
+
         });
     </script>
 </body>
